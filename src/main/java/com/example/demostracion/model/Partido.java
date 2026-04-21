@@ -1,5 +1,6 @@
 package com.example.demostracion.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -26,10 +27,12 @@ public class Partido {
 
     @ManyToOne (optional = false,fetch = FetchType.EAGER)
     @JoinColumn (name = "EquipoLocal",nullable = false)
+    @JsonBackReference
     private Equipo EquipoLocal;
 
     @ManyToOne (optional = false,fetch = FetchType.EAGER)
     @JoinColumn (name = "EquipoVisitante" ,nullable = false)
+    @JsonBackReference
     private Equipo EquipoVisitante;
 
     @Column (nullable = false, length = 100)

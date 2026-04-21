@@ -1,5 +1,6 @@
 package com.example.demostracion.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -33,6 +34,7 @@ public class Jugador {
 
     @ManyToOne (optional = false, fetch = FetchType.EAGER)
     @JoinColumn (name = "IdEquipo",nullable = false)
+    @JsonBackReference
     private Equipo equipo;
 
     @OneToMany (mappedBy = "Jugador",cascade = CascadeType.ALL)

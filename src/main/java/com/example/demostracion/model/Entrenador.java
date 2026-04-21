@@ -1,5 +1,6 @@
 package com.example.demostracion.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -21,6 +22,7 @@ public class Entrenador {
 
     @ManyToOne (optional = false, fetch = FetchType.EAGER)
     @JoinColumn (name = "IdEquipo",nullable = false)
+    @JsonBackReference
     private Equipo equipo;
 }
 
