@@ -1,0 +1,36 @@
+package com.example.demostracion.model;
+
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Entity
+@Table
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+public class EstadisticasJugador {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long id;
+
+    @ManyToOne (optional = false,fetch = FetchType.EAGER)
+    @JoinColumn (name = "id_Partido" ,nullable = false)
+    private Partido Partido;
+
+    @ManyToOne (optional = false,fetch = FetchType.EAGER)
+    @JoinColumn (name = "id_Jugador" ,nullable = false)
+    private Jugador Jugador;
+
+    @Column
+    private int minutosJugados;
+    @Column
+    private int Goles;
+    @Column
+    private int asistecias;
+    @Column
+    private int Tarjetas_Amarillas;
+    @Column
+    private int Tarjetas_Rojas;
+}
