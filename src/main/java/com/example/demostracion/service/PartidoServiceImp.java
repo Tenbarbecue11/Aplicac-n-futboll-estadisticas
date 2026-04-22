@@ -28,10 +28,18 @@ public class PartidoServiceImp implements PartidoService {
     @Override
     public Partido actualizarPartido(long id,Partido partido) {
         Partido existente = buscarPartido(id);
-        existente.setFechadelPartido(partido.getFechadelPartido());
-        existente.setEstadio(partido.getEstadio());
-        existente.setEquipoLocal(partido.getEquipoLocal());
-        existente.setEquipoVisitante(partido.getEquipoVisitante());
+        if (partido.getFechadelPartido()!=null) {
+            existente.setFechadelPartido(partido.getFechadelPartido());
+        }
+        if (partido.getEstadio()!=null) {
+            existente.setEstadio(partido.getEstadio());
+        }
+        if (partido.getEquipoLocal()!=null) {
+            existente.setEquipoLocal(partido.getEquipoLocal());
+        }
+        if (partido.getEquipoVisitante()!=null) {
+            existente.setEquipoVisitante(partido.getEquipoVisitante());
+        }
         existente.setGolesLocal(partido.getGolesLocal());
         existente.setGolesVisitante(partido.getGolesVisitante());
         return partidoRepository.save(existente);

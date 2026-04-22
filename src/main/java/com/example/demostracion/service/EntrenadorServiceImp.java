@@ -70,9 +70,15 @@ public class EntrenadorServiceImp implements EntrenadorService {
         Equipo equipo = equipoRepository.findById(request.getIdEquipo())
                 .orElseThrow(() -> new RuntimeException("Equipo no encontrado"));
 
-        existente.setNombre(request.getNombre());
-        existente.setEspecialidad(request.getEspecialidad());
-        existente.setEquipo(equipo);
+        if (request.getNombre() != null) {
+            existente.setNombre(request.getNombre());
+        }
+        if (request.getEspecialidad() != null) {
+            existente.setEspecialidad(request.getEspecialidad());
+        }
+        if (request.getIdEquipo() != null) {
+            existente.setEquipo(equipo);
+        }
 
         return toResponse(entrenadorRepository.save(existente));
     }
@@ -83,4 +89,7 @@ public class EntrenadorServiceImp implements EntrenadorService {
                 .orElseThrow(() -> new RuntimeException("Entrenador no encontrado"));
         entrenadorRepository.deleteById(id);
     }
+
+
+
 }

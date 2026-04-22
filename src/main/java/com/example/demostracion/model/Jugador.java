@@ -7,6 +7,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -28,7 +29,7 @@ public class Jugador {
     @Column(nullable = false)
     private int dorsal;
     @Column(nullable = false)
-    private Date fechaNacimiento;
+    private LocalDate fechaNacimiento;
     @Column(nullable = false, length = 100)
     private String Nacionalidad;
 

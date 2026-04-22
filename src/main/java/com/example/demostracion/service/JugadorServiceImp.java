@@ -33,12 +33,24 @@ public class JugadorServiceImp implements JugadorService {
     public Jugador actualizarJugador(long id, Jugador jugador) {
         Jugador existente = jugadorRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Jugador no encontrado"));
-        existente.setNombre(jugador.getNombre());
-        existente.setEquipo(jugador.getEquipo());
-        existente.setDorsal(jugador.getDorsal());
-        existente.setPosicion(jugador.getPosicion());
-        existente.setFechaNacimiento(jugador.getFechaNacimiento());
-        existente.setNacionalidad(jugador.getNacionalidad());
+        if (jugador.getNombre()!=null){
+            existente.setNombre(jugador.getNombre());
+        }
+        if (jugador.getEquipo()!=null){
+            existente.setEquipo(jugador.getEquipo());
+        }
+        if (jugador.getDorsal()!= 0) {
+            existente.setDorsal(jugador.getDorsal());
+        }
+        if (jugador.getPosicion()!=null) {
+            existente.setPosicion(jugador.getPosicion());
+        }
+        if (jugador.getFechaNacimiento()!=null) {
+            existente.setFechaNacimiento(jugador.getFechaNacimiento());
+        }
+        if (jugador.getNacionalidad()!=null) {
+            existente.setNacionalidad(jugador.getNacionalidad());
+        }
         return jugadorRepository.save(existente);
     }
 
