@@ -34,9 +34,15 @@ public class EquipoServiceImp implements EquipoService {
     public Equipo ActualizarEquipo(long id, Equipo equipo) {
         Equipo existente=equipoRepository.findById(id)
                 .orElseThrow(()-> new RuntimeException("Entrenador no encontrado"));
-        existente.setNombre(equipo.getNombre());
-        existente.setCiudad(equipo.getCiudad());
-        existente.setFecha(equipo.getFecha());
+        if (equipo.getNombre()!= null){
+            existente.setNombre(equipo.getNombre());
+        }
+        if (equipo.getCiudad()!= null){
+            existente.setCiudad(equipo.getCiudad());
+        }
+        if (equipo.getFecha()!= null){
+            existente.setFecha(equipo.getFecha());
+        }
         return equipoRepository.save(existente);
     }
 

@@ -31,9 +31,17 @@ public class EntrenadorServiceImp implements EntrenadorService{
     public  Entrenador ActualizarEntrenador(long id,Entrenador entrenador){
         Entrenador existente=entrenadorRepository.findById(id)
                 .orElseThrow(()-> new RuntimeException("Entrenador no encontrado"));
-        existente.setNombre(entrenador.getNombre());
-        existente.setEquipo(entrenador.getEquipo());
-        existente.setEspecialidad(entrenador.getEspecialidad());
+        if (entrenador.getNombre()!=null){
+            existente.setNombre(entrenador.getNombre());
+        }
+        if (entrenador.getEquipo()!=null){
+            existente.setEquipo(entrenador.getEquipo());
+
+        }
+        if (entrenador.getEspecialidad()!=null){
+            existente.setEspecialidad(entrenador.getEspecialidad());
+        }
+
         return entrenadorRepository.save(existente);
     }
     @Override
