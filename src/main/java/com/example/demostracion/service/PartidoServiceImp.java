@@ -49,4 +49,14 @@ public class PartidoServiceImp implements PartidoService {
         partidoRepository.deleteById(id);
 
     }
+
+    @Override
+    public Integer totalGolesEquipo(Long id) {
+        return partidoRepository.totalGolesEquipo(id);
+    }
+
+    @Override
+    public List<Object[]> resultadosPartidos() {
+        return partidoRepository.resultadosPartidos();
+    }
 }

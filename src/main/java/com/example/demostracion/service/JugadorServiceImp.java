@@ -48,4 +48,14 @@ public class JugadorServiceImp implements JugadorService {
                 .orElseThrow(() -> new RuntimeException("Jugador no encontrado"));
         jugadorRepository.deleteById(id);
     }
+
+    @Override
+    public List<Jugador> jugadoresPorEquipo(Long id) {
+        return jugadorRepository.jugadoresPorEquipo(id);
+    }
+
+    @Override
+    public List<Jugador> jugadoresConMasDeXGoles(int goles) {
+        return jugadorRepository.jugadoresConMasDeXGoles(goles);
+    }
 }

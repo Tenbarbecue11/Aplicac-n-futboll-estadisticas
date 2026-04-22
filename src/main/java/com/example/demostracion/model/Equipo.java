@@ -6,6 +6,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -24,12 +25,12 @@ public class Equipo {
     @Column (nullable = false,unique = true, length = 100)
     private String ciudad;
     @Column  (nullable = false, length = 100)
-    private Date fecha;
+    private LocalDate fecha;
 
     @OneToMany (mappedBy = "equipo",cascade = CascadeType.ALL)
     @JsonManagedReference
     private List<Jugador> jugadores=new ArrayList<>();
-
+ 
     @OneToMany (mappedBy = "equipo",cascade = CascadeType.ALL)
     @JsonManagedReference
     private List<Entrenador> entrenadores=new ArrayList<>();

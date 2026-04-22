@@ -22,7 +22,7 @@ public class Entrenador {
 
     @ManyToOne (optional = false, fetch = FetchType.EAGER)
     @JoinColumn (name = "IdEquipo",nullable = false)
-    @JsonBackReference
+    @JsonBackReference("Entrenadaor_equipo")
     private Equipo equipo;
 }
 

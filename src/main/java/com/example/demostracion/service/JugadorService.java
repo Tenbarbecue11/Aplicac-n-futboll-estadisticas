@@ -10,4 +10,10 @@ public interface JugadorService {
     Jugador buscarJugadorPorId(long id);
     Jugador actualizarJugador(long id,Jugador jugador);
     void eliminarJugador(long id);
+
+    //Añadidos
+
+    List<Jugador> jugadoresPorEquipo(Long id);
+
+    List<Jugador> jugadoresConMasDeXGoles(int goles);
 }

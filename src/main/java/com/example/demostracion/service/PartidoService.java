@@ -10,4 +10,9 @@ public interface PartidoService {
     Partido buscarPartido(long id);
     Partido actualizarPartido(long id, Partido partido);
     void eliminarPartido(long id);
+
+    //Agregados
+    Integer totalGolesEquipo(Long id);
+
+    List<Object[]> resultadosPartidos();
 }

@@ -34,7 +34,7 @@ public class Jugador {
 
     @ManyToOne (optional = false, fetch = FetchType.EAGER)
     @JoinColumn (name = "IdEquipo",nullable = false)
-    @JsonBackReference
+    @JsonBackReference("jugador_equipo")
     private Equipo equipo;
 
     @OneToMany (mappedBy = "Jugador",cascade = CascadeType.ALL)

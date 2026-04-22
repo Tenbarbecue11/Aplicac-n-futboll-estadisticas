@@ -18,12 +18,12 @@ public class EstadisticasJugador {
 
     @ManyToOne (optional = false,fetch = FetchType.EAGER)
     @JoinColumn (name = "id_Partido" ,nullable = false)
-    @JsonBackReference
+    @JsonBackReference("Estadisticas_Partido")
     private Partido Partido;
 
     @ManyToOne (optional = false,fetch = FetchType.EAGER)
     @JoinColumn (name = "id_Jugador" ,nullable = false)
-    @JsonBackReference
+    @JsonBackReference("Estadisticas_Jugador")
     private Jugador Jugador;
 
     @Column
