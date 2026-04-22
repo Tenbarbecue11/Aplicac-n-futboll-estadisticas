@@ -27,6 +27,7 @@ public class EstadisticasJugadorServiceImp implements EstadisticasJugadorService
     @Override
     public EstadisticasJugador ActualizarEstadisticas(long id, EstadisticasJugador estadisticasJugador) {
         EstadisticasJugador existente=obtenerEstadisticas(id);
+
         existente.setMinutosJugados(estadisticasJugador.getMinutosJugados());
         existente.setGoles(estadisticasJugador.getGoles());
         existente.setAsistecias(estadisticasJugador.getAsistecias());
