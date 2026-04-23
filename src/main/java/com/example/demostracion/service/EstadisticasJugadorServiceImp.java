@@ -1,46 +1,100 @@
 package com.example.demostracion.service;
 
+import com.example.demostracion.DTO.EstadisticasJugadorRequestDTO;
+import com.example.demostracion.DTO.EstadisticasJugadorResponseDTO;
+import com.example.demostracion.DTO.EstadisticasJugadorUpdateDTO;
 import com.example.demostracion.model.EstadisticasJugador;
+import com.example.demostracion.model.Jugador;
+import com.example.demostracion.model.Partido;
 import com.example.demostracion.repository.EstadisticasJugadorRepository;
+import com.example.demostracion.repository.JugadorRepository;
+import com.example.demostracion.repository.PartidoRepository;
 import org.springframework.stereotype.Service;
 
 @Service
 public class EstadisticasJugadorServiceImp implements EstadisticasJugadorService{
 
     private final EstadisticasJugadorRepository estadisticasJugadorRepository;
+    private final JugadorRepository jugadorRepository;
+    private final PartidoRepository partidoRepository;
 
-    public EstadisticasJugadorServiceImp(EstadisticasJugadorRepository estadisticasJugadorRepository) {
+    public EstadisticasJugadorServiceImp(EstadisticasJugadorRepository estadisticasJugadorRepository, JugadorRepository jugadorRepository, PartidoRepository partidoRepository) {
         this.estadisticasJugadorRepository = estadisticasJugadorRepository;
+        this.jugadorRepository = jugadorRepository;
+        this.partidoRepository = partidoRepository;
+    }
+
+    public EstadisticasJugadorResponseDTO guardarEstadisticas(EstadisticasJugadorRequestDTO dto) {
+        Jugador jugador = jugadorRepository.findById(dto.getIdJugador())
+                .orElseThrow(() -> new RuntimeException("Jugador no encontrado"));
+
+        Partido partido = partidoRepository.findById(dto.getIdPartido())
+                .orElseThrow(() -> new RuntimeException("Partido no encontrado"));
+
+        EstadisticasJugador e = new EstadisticasJugador();
+
+        e.setJugador(jugador);
+        e.setPartido(partido);
+
+        e.setMinutosJugados(dto.getMinutosJugados());
+        e.setGoles(dto.getGoles());
+        e.setAsistecias(dto.getAsistecias());
+        e.setTarjetas_Amarillas(dto.getTarjetas_Amarillas());
+        e.setTarjetas_Rojas(dto.getTarjetas_Rojas());
+
+        return convertir(estadisticasJugadorRepository.save(e));
     }
 
     @Override
-    public EstadisticasJugador guardarEstadisticas(EstadisticasJugador estadisticasJugador) {
-        return estadisticasJugadorRepository.save(estadisticasJugador);
-    }
-
-    @Override
-    public EstadisticasJugador obtenerEstadisticas(long id) {
-        return estadisticasJugadorRepository.findById(id)
+    public EstadisticasJugadorResponseDTO obtenerEstadisticas(long id) {
+        EstadisticasJugador e = estadisticasJugadorRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("EstadisticasJugador no existe"));
+        return convertir(e);
     }
 
     @Override
-    public EstadisticasJugador ActualizarEstadisticas(long id, EstadisticasJugador estadisticasJugador) {
-        EstadisticasJugador existente=obtenerEstadisticas(id);
-
-        existente.setMinutosJugados(estadisticasJugador.getMinutosJugados());
-        existente.setGoles(estadisticasJugador.getGoles());
-        existente.setAsistecias(estadisticasJugador.getAsistecias());
-        existente.setTarjetas_Amarillas(estadisticasJugador.getTarjetas_Amarillas());
-        existente.setTarjetas_Rojas(estadisticasJugador.getTarjetas_Rojas());
-        return estadisticasJugadorRepository.save(existente);
+    public EstadisticasJugadorResponseDTO ActualizarEstadisticas(long id, EstadisticasJugadorUpdateDTO dto) {
+        EstadisticasJugador existente=obtenerEntidad(id);
+        if (dto.getMinutosJugados() != null) {
+            existente.setMinutosJugados(dto.getMinutosJugados());
+        }
+        if (dto.getGoles() != null) {
+            existente.setGoles(dto.getGoles());
+        }
+        if (dto.getAsistecias() != null) {
+            existente.setAsistecias(dto.getAsistecias());
+        }
+        if (dto.getTarjetas_Amarillas() != null) {
+            existente.setTarjetas_Amarillas(dto.getTarjetas_Amarillas());
+        }
+        if (dto.getTarjetas_Rojas() != null) {
+            existente.setTarjetas_Rojas(dto.getTarjetas_Rojas());
+        }
+        return convertir(estadisticasJugadorRepository.save(existente));
 
     }
 
     @Override
     public void EliminarEstadisticas(long id) {
-        obtenerEstadisticas(id);
+        obtenerEntidad(id);
         estadisticasJugadorRepository.deleteById(id);
 
+    }
+    private EstadisticasJugadorResponseDTO convertir(EstadisticasJugador e) {
+        return new EstadisticasJugadorResponseDTO(
+                e.getId(),
+                e.getMinutosJugados(),
+                e.getGoles(),
+                e.getAsistecias(),
+                e.getTarjetas_Amarillas(),
+                e.getTarjetas_Rojas(),
+                e.getJugador().getId(),
+                e.getJugador().getNombre(),
+                e.getPartido().getId()
+        );
+    }
+    private EstadisticasJugador obtenerEntidad(long id) {
+        return estadisticasJugadorRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("No encontrado"));
     }
 }

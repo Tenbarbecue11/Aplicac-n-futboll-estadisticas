@@ -1,10 +1,12 @@
 package com.example.demostracion.service;
 
-import com.example.demostracion.model.EstadisticasJugador;
+import com.example.demostracion.DTO.EstadisticasJugadorRequestDTO;
+import com.example.demostracion.DTO.EstadisticasJugadorResponseDTO;
+import com.example.demostracion.DTO.EstadisticasJugadorUpdateDTO;
 
 public interface EstadisticasJugadorService {
-    EstadisticasJugador guardarEstadisticas(EstadisticasJugador estadisticasJugador);
-    EstadisticasJugador obtenerEstadisticas(long id);
-    EstadisticasJugador ActualizarEstadisticas(long id,EstadisticasJugador estadisticasJugador);
+    EstadisticasJugadorResponseDTO guardarEstadisticas(EstadisticasJugadorRequestDTO dto);
+    EstadisticasJugadorResponseDTO obtenerEstadisticas(long id);
+    EstadisticasJugadorResponseDTO ActualizarEstadisticas(long id, EstadisticasJugadorUpdateDTO dto);
     void EliminarEstadisticas(long id);
 }

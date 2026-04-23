@@ -1,6 +1,8 @@
 package com.example.demostracion.controller;
 
-import com.example.demostracion.model.EstadisticasJugador;
+import com.example.demostracion.DTO.EstadisticasJugadorRequestDTO;
+import com.example.demostracion.DTO.EstadisticasJugadorResponseDTO;
+import com.example.demostracion.DTO.EstadisticasJugadorUpdateDTO;
 import com.example.demostracion.service.EstadisticasJugadorService;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,16 +18,16 @@ public class EstadisticasJugadorController {
     }
 
     @PostMapping
-    public EstadisticasJugador save(@RequestBody EstadisticasJugador estadisticasJugador) {
-        return estadisticasJugadorService.guardarEstadisticas(estadisticasJugador);
+    public EstadisticasJugadorResponseDTO save(@RequestBody EstadisticasJugadorRequestDTO dto) {
+        return estadisticasJugadorService.guardarEstadisticas(dto);
     }
     @GetMapping("/{id}")
-    public EstadisticasJugador get(@PathVariable long id) {
+    public EstadisticasJugadorResponseDTO get(@PathVariable long id) {
         return estadisticasJugadorService.obtenerEstadisticas(id);
     }
     @PutMapping("/{id}")
-    public EstadisticasJugador update(@PathVariable long id, @RequestBody EstadisticasJugador estadisticasJugador) {
-        return estadisticasJugadorService.ActualizarEstadisticas(id, estadisticasJugador);
+    public EstadisticasJugadorResponseDTO update(@PathVariable long id, @RequestBody EstadisticasJugadorUpdateDTO dto) {
+        return estadisticasJugadorService.ActualizarEstadisticas(id, dto);
     }
     @DeleteMapping("/{id}")
     public void delete(@PathVariable long id) {
