@@ -24,6 +24,7 @@ public class EntrenadorController {
 
     @GetMapping
     public List<EntrenadorResponseDTO> getEntrenadores() {
+        System.out.println("🔥 GET /api/Entrenador ejecutado");
         return entrenadorService.listarEntrenadores();
     }
 
