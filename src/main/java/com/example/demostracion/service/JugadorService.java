@@ -1,19 +1,16 @@
 package com.example.demostracion.service;
 
-import com.example.demostracion.model.Jugador;
+import com.example.demostracion.DTO.JugadorRequestDTO;
+import com.example.demostracion.DTO.JugadorResponseDTO;
 
 import java.util.List;
 
 public interface JugadorService {
-    Jugador guardarJugador(Jugador jugador);
-    List<Jugador> listarJugadores();
-    Jugador buscarJugadorPorId(long id);
-    Jugador actualizarJugador(long id,Jugador jugador);
+    JugadorResponseDTO guardarJugador(JugadorRequestDTO request);
+    List<JugadorResponseDTO> listarJugadores();
+    JugadorResponseDTO buscarJugadorPorId(long id);
+    JugadorResponseDTO actualizarJugador(long id, JugadorRequestDTO request);
     void eliminarJugador(long id);
-
-    //Añadidos
-
-    List<Jugador> jugadoresPorEquipo(Long id);
-
-    List<Jugador> jugadoresConMasDeXGoles(int goles);
+    List<JugadorResponseDTO> jugadoresPorEquipo(Long id);
+    List<JugadorResponseDTO> jugadoresConMasDeXGoles(int goles);
 }

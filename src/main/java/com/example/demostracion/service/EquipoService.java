@@ -1,14 +1,14 @@
 package com.example.demostracion.service;
 
-import com.example.demostracion.model.Equipo;
+import com.example.demostracion.DTO.EquipoRequestDTO;
+import com.example.demostracion.DTO.EquipoResponseDTO;
 
 import java.util.List;
 
 public interface EquipoService {
-
-    Equipo guardarEquipo(Equipo equipo);
-    List<Equipo> listarEquipos();
-    Equipo buscarPorIdEquipo(long id);
-    Equipo ActualizarEquipo(long id,Equipo equipo);
-    void EliminarEquipo(long id);
+    EquipoResponseDTO guardarEquipo(EquipoRequestDTO request);
+    List<EquipoResponseDTO> listarEquipos();
+    EquipoResponseDTO buscarPorIdEquipo(long id);
+    EquipoResponseDTO actualizarEquipo(long id, EquipoRequestDTO request);  // ✅ minúscula
+    void eliminarEquipo(long id);  // ✅ minúscula
 }

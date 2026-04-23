@@ -1,18 +1,18 @@
 package com.example.demostracion.service;
 
-import com.example.demostracion.model.Partido;
+import com.example.demostracion.DTO.PartidoRequestDTO;
+import com.example.demostracion.DTO.PartidoResponseDTO;
 
 import java.util.List;
 
 public interface PartidoService {
-    Partido guardarPartido(Partido partido);
-    List<Partido> listarPartidos();
-    Partido buscarPartido(long id);
-    Partido actualizarPartido(long id, Partido partido);
+    PartidoResponseDTO guardarPartido(PartidoRequestDTO request);
+    List<PartidoResponseDTO> listarPartidos();
+    PartidoResponseDTO buscarPartido(long id);
+    PartidoResponseDTO actualizarPartido(long id, PartidoRequestDTO request);
     void eliminarPartido(long id);
 
-    //Agregados
+    // ✅ estos no cambian porque no devuelven Partido
     Integer totalGolesEquipo(Long id);
-
     List<Object[]> resultadosPartidos();
 }
