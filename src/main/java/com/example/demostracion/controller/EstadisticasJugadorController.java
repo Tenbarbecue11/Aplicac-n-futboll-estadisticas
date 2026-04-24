@@ -6,6 +6,8 @@ import com.example.demostracion.DTO.EstadisticasJugadorUpdateDTO;
 import com.example.demostracion.service.EstadisticasJugadorService;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 
 @RestController
 @RequestMapping("/api/Estadisticas")
@@ -32,5 +34,10 @@ public class EstadisticasJugadorController {
     @DeleteMapping("/{id}")
     public void delete(@PathVariable long id) {
         estadisticasJugadorService.EliminarEstadisticas(id);
+    }
+    // ✅ solo agregar este método al controller existente
+    @GetMapping("/jugador/{id}")
+    public List<EstadisticasJugadorResponseDTO> getPorJugador(@PathVariable Long id) {
+        return estadisticasJugadorService.obtenerPorJugador(id);
     }
 }

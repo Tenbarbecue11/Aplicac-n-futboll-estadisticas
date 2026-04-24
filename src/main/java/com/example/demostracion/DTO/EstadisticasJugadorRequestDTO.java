@@ -10,7 +10,7 @@ public class EstadisticasJugadorRequestDTO {
 
     private Integer minutosJugados;
     private Integer goles;
-    private Integer asistecias;
-    private Integer tarjetas_Amarillas;
-    private Integer tarjetas_Rojas;
+    private Integer asistencias;
+    private Integer tarjetasAmarillas;
+    private Integer tarjetasRojas;
 }

@@ -11,6 +11,8 @@ import com.example.demostracion.repository.JugadorRepository;
 import com.example.demostracion.repository.PartidoRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class EstadisticasJugadorServiceImp implements EstadisticasJugadorService{
 
@@ -38,9 +40,9 @@ public class EstadisticasJugadorServiceImp implements EstadisticasJugadorService
 
         e.setMinutosJugados(dto.getMinutosJugados());
         e.setGoles(dto.getGoles());
-        e.setAsistecias(dto.getAsistecias());
-        e.setTarjetas_Amarillas(dto.getTarjetas_Amarillas());
-        e.setTarjetas_Rojas(dto.getTarjetas_Rojas());
+        e.setAsistecias(dto.getAsistencias());
+        e.setTarjetas_Amarillas(dto.getTarjetasAmarillas());
+        e.setTarjetas_Rojas(dto.getTarjetasRojas());
 
         return convertir(estadisticasJugadorRepository.save(e));
     }
@@ -61,14 +63,14 @@ public class EstadisticasJugadorServiceImp implements EstadisticasJugadorService
         if (dto.getGoles() != null) {
             existente.setGoles(dto.getGoles());
         }
-        if (dto.getAsistecias() != null) {
-            existente.setAsistecias(dto.getAsistecias());
+        if (dto.getAsistencias() != null) {
+            existente.setAsistecias(dto.getAsistencias());
         }
-        if (dto.getTarjetas_Amarillas() != null) {
-            existente.setTarjetas_Amarillas(dto.getTarjetas_Amarillas());
+        if (dto.getTarjetasAmarillas() != null) {
+            existente.setTarjetas_Amarillas(dto.getTarjetasAmarillas());
         }
-        if (dto.getTarjetas_Rojas() != null) {
-            existente.setTarjetas_Rojas(dto.getTarjetas_Rojas());
+        if (dto.getTarjetasRojas() != null) {
+            existente.setTarjetas_Rojas(dto.getTarjetasRojas());
         }
         return convertir(estadisticasJugadorRepository.save(existente));
 
@@ -96,5 +98,15 @@ public class EstadisticasJugadorServiceImp implements EstadisticasJugadorService
     private EstadisticasJugador obtenerEntidad(long id) {
         return estadisticasJugadorRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("No encontrado"));
+    }
+    @Override
+    public List<EstadisticasJugadorResponseDTO> obtenerPorJugador(Long id) {
+
+        List<EstadisticasJugador> lista =
+                estadisticasJugadorRepository.findByJugador_Id(id);
+
+        return lista.stream()
+                .map(this::convertir)
+                .toList();
     }
 }
