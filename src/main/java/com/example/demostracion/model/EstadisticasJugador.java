@@ -24,7 +24,7 @@ public class EstadisticasJugador {
     @ManyToOne (optional = false,fetch = FetchType.EAGER)
     @JoinColumn (name = "id_Jugador" ,nullable = false)
     @JsonBackReference("Estadisticas_Jugador")
-    private Jugador Jugador;
+    private Jugador jugador;
 
     @Column
     private int minutosJugados;

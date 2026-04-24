@@ -38,7 +38,7 @@ public class Jugador {
     @JsonBackReference("jugador_equipo")
     private Equipo equipo;
 
-    @OneToMany (mappedBy = "Jugador",cascade = CascadeType.ALL)
+    @OneToMany (mappedBy = "jugador",cascade = CascadeType.ALL)
     @JsonManagedReference
     private List<EstadisticasJugador> EstadisticasJugador=new ArrayList<>();
 }
