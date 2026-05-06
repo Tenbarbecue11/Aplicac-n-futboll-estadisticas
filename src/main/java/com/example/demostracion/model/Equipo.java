@@ -30,7 +30,7 @@ public class Equipo {
     @OneToMany (mappedBy = "equipo",cascade = CascadeType.ALL)
     @JsonManagedReference
     private List<Jugador> jugadores=new ArrayList<>();
- 
+
     @OneToMany (mappedBy = "equipo",cascade = CascadeType.ALL)
     @JsonManagedReference
     private List<Entrenador> entrenadores=new ArrayList<>();
